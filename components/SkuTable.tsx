@@ -37,6 +37,11 @@ export function SkuTable({ records, actions, onAction }: SkuTableProps) {
         </span>
       </div>
 
+      {records.length === 0 ? (
+        <p className="px-4 py-10 text-center text-sm text-muted">
+          Connect sources to see performance.
+        </p>
+      ) : (
       <div className="overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]">
         <table className="w-full min-w-[880px] border-collapse text-left text-sm">
           <thead>
@@ -117,6 +122,7 @@ export function SkuTable({ records, actions, onAction }: SkuTableProps) {
           </tbody>
         </table>
       </div>
+      )}
     </section>
   );
 }

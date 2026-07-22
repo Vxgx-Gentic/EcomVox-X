@@ -1,6 +1,6 @@
 "use client";
 
-type SourceLabel = "default" | `uploaded: ${string}`;
+type SourceLabel = "demo store" | `uploaded: ${string}`;
 
 interface DataUploadPanelProps {
   shopifySource: SourceLabel;
@@ -8,7 +8,7 @@ interface DataUploadPanelProps {
   error: string | null;
   onShopifyFile: (file: File) => void;
   onMetaFile: (file: File) => void;
-  onReset: () => void;
+  onReloadDemoStore: () => void;
 }
 
 export function DataUploadPanel({
@@ -17,12 +17,12 @@ export function DataUploadPanel({
   error,
   onShopifyFile,
   onMetaFile,
-  onReset,
+  onReloadDemoStore,
 }: DataUploadPanelProps) {
   return (
     <section
       className="telemetry-panel flex flex-col gap-3 p-3 sm:p-4"
-      aria-label="Mock data upload"
+      aria-label="Data sources"
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div>
@@ -30,8 +30,8 @@ export function DataUploadPanel({
             Data sources
           </h2>
           <p className="mt-1 text-sm text-muted">
-            Defaults load automatically. Upload one or both JSON files to play —
-            the other side keeps its current data. No live Shopify/Meta accounts.
+            Demo store inventory and ads are connected. Upload JSON to explore a
+            custom scenario — the other source keeps its current data.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -51,10 +51,10 @@ export function DataUploadPanel({
           </a>
           <button
             type="button"
-            onClick={onReset}
+            onClick={onReloadDemoStore}
             className="border border-border px-3 py-2 font-mono text-[10px] uppercase tracking-wider text-muted transition-colors hover:bg-white/[0.04] hover:text-platinum"
           >
-            Reset defaults
+            Reload demo store
           </button>
         </div>
       </div>

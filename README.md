@@ -1,26 +1,25 @@
 # EcomVox - X
 
-Class MVP: unify **Shopify inventory** with **Meta Ads** spend by `SKU_ID`, compute contribution margin, and surface actionable alerts — wasted ad spend on low stock and impending stockouts.
+Unify **Shopify inventory** with **Meta Ads** spend by `SKU_ID`, compute contribution margin, and surface actionable alerts — wasted ad spend on low stock and impending stockouts.
 
-> **Mock data only.** No live Shopify/Meta APIs, OAuth, auth, or paid backend. Drop-in JSON → rules engine → telemetry dashboard.
+**Cohort path:** Landing → Onboarding → Workspace. Numbers appear only after you connect the demo store. When you’re done, **End session** returns to the landing for the next reviewer.
 
 **Repo:** https://github.com/Vxgx-Gentic/EcomVox-X  
 **Live demo:** https://ecomvox-x.vercel.app
 
-## Share / demo
+## Share / demo (reviewers)
 
-1. Open **https://ecomvox-x.vercel.app** (or run locally).
-2. Defaults are already loaded — you can review alerts immediately.
-3. Optional: download the sample files from the UI (or `/samples/shopify_mock.json` and `/samples/meta_ads_mock.json`).
-4. Edit numbers locally (e.g. set `stock_level` to `3` while that SKU still has `ad_spend` > 0 to force a CRITICAL).
-5. Upload **one or both** JSON files in the Data sources panel. The other side keeps its current data (default or previous upload).
-6. Use **Reset defaults** to restore the bundled mocks.
+1. Open **https://ecomvox-x.vercel.app** — product intro only (no KPIs yet).
+2. Click **Start here** and walk through onboarding:
+   - what the tool is for
+   - how to read KPIs and alert statuses
+   - how to act (Pause Ad / Reorder)
+   - connect the demo store
+3. **Connect demo store · Enter workspace** opens the live tool with inventory + ads already joined.
+4. Review severity-sorted SKUs, try actions, optionally download/edit/upload JSON from **Data sources**.
+5. Click **End session** (bottom-left) to clear the session and return to the landing.
 
-You do **not** connect real Shopify or Meta accounts for this class demo.
-
-### Do reviewers need both files?
-
-For a full join/review, both inventory and ads matter. They can upload only Shopify (ads stay default) or only Meta (inventory stays default). Invalid JSON shows an error; the last good data stays on screen.
+You do **not** need real Shopify or Meta accounts. Invalid uploads show an error and keep the last good data. **Reload demo store** restores the bundled samples without leaving the workspace.
 
 ## Problem
 
@@ -45,8 +44,11 @@ EcomVox - X joins store inventory with ad campaign spend, shows contribution mar
 
 - Next.js (App Router) · TypeScript · Tailwind CSS
 - Pure React state (no Redux/Zustand)
-- Local mocks: [`data/shopify_mock.json`](data/shopify_mock.json), [`data/meta_ads_mock.json`](data/meta_ads_mock.json)
+- Session gate via `sessionStorage` ([`lib/session.ts`](lib/session.ts)) — `/workspace` redirects home without an active session
+- Sample payloads: [`data/shopify_mock.json`](data/shopify_mock.json), [`data/meta_ads_mock.json`](data/meta_ads_mock.json)
 - Browser upload + [`public/samples/`](public/samples/) for shareable play files
+
+> **Developers:** UI speaks “demo store,” not “mock.” Payloads are still local JSON — no live Shopify/Meta APIs, OAuth, auth, or paid backend.
 
 ## Run locally
 
@@ -60,16 +62,17 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Project layout
 
 ```
-data/           Bundled Shopify + Meta payloads (defaults)
+data/           Bundled Shopify + Meta payloads (demo store)
 public/samples/ Downloadable copies for reviewers
 lib/types.ts    SKUItem, AdCampaign, UnifiedPerformanceRecord
 lib/engine.ts   processEcomData + summarizePerformance
 lib/validate.ts Upload schema checks
-components/     Dashboard, upload panel, KPIs, SKU table
-app/            Next.js App Router shell
+lib/session.ts  Workspace session start / clear / gate
+components/     Landing, Onboarding, Dashboard, upload, KPIs, table
+app/            / · /onboarding · /workspace
 docs/           Class source PDFs
 ```
 
 ## Out of scope (by design)
 
-Live API SDKs, OAuth, authentication, databases, GA4, paid hosting.
+Live API SDKs, OAuth, authentication, databases, GA4.
