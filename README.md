@@ -4,11 +4,12 @@ Class MVP: unify **Shopify inventory** with **Meta Ads** spend by `SKU_ID`, comp
 
 > **Mock data only.** No live Shopify/Meta APIs, OAuth, auth, or paid backend. Drop-in JSON → rules engine → telemetry dashboard.
 
-**Repo:** https://github.com/Vxgx-Gentic/EcomVox-X
+**Repo:** https://github.com/Vxgx-Gentic/EcomVox-X  
+**Live demo:** https://ecomvox-x.vercel.app
 
 ## Share / demo
 
-1. Open the live app (Vercel URL — see deploy notes below, or run locally).
+1. Open **https://ecomvox-x.vercel.app** (or run locally).
 2. Defaults are already loaded — you can review alerts immediately.
 3. Optional: download the sample files from the UI (or `/samples/shopify_mock.json` and `/samples/meta_ads_mock.json`).
 4. Edit numbers locally (e.g. set `stock_level` to `3` while that SKU still has `ad_spend` > 0 to force a CRITICAL).
