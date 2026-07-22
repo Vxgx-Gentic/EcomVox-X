@@ -39,10 +39,10 @@ export function Dashboard({ shopifyData, metaAdsData }: DashboardProps) {
         <div className="mx-auto flex max-w-7xl flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-              Navi Pivot · Mock Pipeline
+              Mock Pipeline · Shopify + Meta
             </p>
             <h1 className="text-2xl font-semibold tracking-tight text-platinum sm:text-3xl">
-              Ecomvox
+              EcomVox - X
             </h1>
           </div>
           <p className="font-mono text-xs text-emerald">

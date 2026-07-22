@@ -1,8 +1,10 @@
-# Ecomvox — Navi Pivot
+# EcomVox - X
 
 Class MVP: unify **Shopify inventory** with **Meta Ads** spend by `SKU_ID`, compute contribution margin, and surface actionable alerts — wasted ad spend on low stock and impending stockouts.
 
 > **Mock data only.** No live Shopify/Meta APIs, OAuth, auth, or paid backend. Drop-in JSON → rules engine → telemetry dashboard.
+
+**Repo:** https://github.com/Vxgx-Gentic/EcomVox-X
 
 ## Problem
 
@@ -10,7 +12,7 @@ An e-commerce analyst struggles with stale performance reporting because multi-p
 
 ## Solution
 
-Navi Pivot joins store inventory with ad campaign spend, shows contribution margin per SKU, and alerts when ads drive traffic to critically low stock or when burn rate implies a stockout within 5 days.
+EcomVox - X joins store inventory with ad campaign spend, shows contribution margin per SKU, and alerts when ads drive traffic to critically low stock or when burn rate implies a stockout within 5 days.
 
 ## Core engine
 

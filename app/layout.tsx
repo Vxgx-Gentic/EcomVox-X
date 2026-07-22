@@ -13,9 +13,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ecomvox — Navi Pivot",
+  title: "EcomVox - X",
   description:
-    "Unify Shopify inventory with Meta ad spend. Contribution margin, wasted-ad alerts, and stockout warnings.",
+    "EcomVox - X unifies Shopify inventory with Meta ad spend. Contribution margin, wasted-ad alerts, and stockout warnings.",
 };
 
 export default function RootLayout({
