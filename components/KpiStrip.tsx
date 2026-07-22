@@ -56,7 +56,9 @@ export function KpiStrip({ summary }: { summary: Summary }) {
           <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
             {item.label}
           </p>
-          <p className={`mt-1 font-mono text-xl tabular-nums ${item.tone}`}>
+          <p
+            className={`mt-1 font-mono text-lg tabular-nums sm:text-xl ${item.tone}`}
+          >
             {item.value}
           </p>
         </div>

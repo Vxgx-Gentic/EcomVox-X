@@ -2,18 +2,36 @@
 
 import { useMemo, useState } from "react";
 import { processEcomData, summarizePerformance } from "@/lib/engine";
+import {
+  parseJsonFile,
+  validateMetaAdsData,
+  validateShopifyData,
+} from "@/lib/validate";
 import type { AdCampaign, SKUItem, UnifiedPerformanceRecord } from "@/lib/types";
+import { DataUploadPanel } from "@/components/DataUploadPanel";
 import { KpiStrip } from "@/components/KpiStrip";
 import { SkuTable } from "@/components/SkuTable";
 
 type ActionTaken = "PAUSE_AD" | "REORDER";
+type SourceLabel = "default" | `uploaded: ${string}`;
 
 interface DashboardProps {
-  shopifyData: SKUItem[];
-  metaAdsData: AdCampaign[];
+  defaultShopify: SKUItem[];
+  defaultMeta: AdCampaign[];
 }
 
-export function Dashboard({ shopifyData, metaAdsData }: DashboardProps) {
+async function readFileText(file: File): Promise<string> {
+  return file.text();
+}
+
+export function Dashboard({ defaultShopify, defaultMeta }: DashboardProps) {
+  const [shopifyData, setShopifyData] = useState<SKUItem[]>(defaultShopify);
+  const [metaAdsData, setMetaAdsData] = useState<AdCampaign[]>(defaultMeta);
+  const [shopifySource, setShopifySource] = useState<SourceLabel>("default");
+  const [metaSource, setMetaSource] = useState<SourceLabel>("default");
+  const [error, setError] = useState<string | null>(null);
+  const [actions, setActions] = useState<Record<string, ActionTaken>>({});
+
   const records = useMemo(
     () => processEcomData(shopifyData, metaAdsData),
     [shopifyData, metaAdsData]
@@ -21,22 +39,57 @@ export function Dashboard({ shopifyData, metaAdsData }: DashboardProps) {
 
   const summary = useMemo(() => summarizePerformance(records), [records]);
 
-  const [actions, setActions] = useState<Record<string, ActionTaken>>({});
-
-  function handleAction(skuId: string, action: ActionTaken) {
-    setActions((prev) => ({ ...prev, [skuId]: action }));
-  }
-
   const sorted: UnifiedPerformanceRecord[] = useMemo(() => {
     const rank = (s: string) =>
       s.startsWith("CRITICAL") ? 0 : s.startsWith("WARNING") ? 1 : 2;
     return [...records].sort((a, b) => rank(a.status) - rank(b.status));
   }, [records]);
 
+  function handleAction(skuId: string, action: ActionTaken) {
+    setActions((prev) => ({ ...prev, [skuId]: action }));
+  }
+
+  async function handleShopifyFile(file: File) {
+    try {
+      const text = await readFileText(file);
+      const parsed = parseJsonFile(text);
+      const validated = validateShopifyData(parsed);
+      setShopifyData(validated);
+      setShopifySource(`uploaded: ${file.name}`);
+      setActions({});
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load Shopify file.");
+    }
+  }
+
+  async function handleMetaFile(file: File) {
+    try {
+      const text = await readFileText(file);
+      const parsed = parseJsonFile(text);
+      const validated = validateMetaAdsData(parsed);
+      setMetaAdsData(validated);
+      setMetaSource(`uploaded: ${file.name}`);
+      setActions({});
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load Meta Ads file.");
+    }
+  }
+
+  function handleReset() {
+    setShopifyData(defaultShopify);
+    setMetaAdsData(defaultMeta);
+    setShopifySource("default");
+    setMetaSource("default");
+    setActions({});
+    setError(null);
+  }
+
   return (
     <div className="flex flex-1 flex-col">
       <header className="border-b border-border px-4 py-4 sm:px-6">
-        <div className="mx-auto flex max-w-7xl flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
               Mock Pipeline · Shopify + Meta
@@ -46,12 +99,20 @@ export function Dashboard({ shopifyData, metaAdsData }: DashboardProps) {
             </h1>
           </div>
           <p className="font-mono text-xs text-emerald">
-            ● Mock Shopify + Meta connected
+            ● Browser mocks · no live accounts
           </p>
         </div>
       </header>
 
       <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 sm:px-6 sm:py-6">
+        <DataUploadPanel
+          shopifySource={shopifySource}
+          metaSource={metaSource}
+          error={error}
+          onShopifyFile={handleShopifyFile}
+          onMetaFile={handleMetaFile}
+          onReset={handleReset}
+        />
         <KpiStrip summary={summary} />
         <SkuTable
           records={sorted}

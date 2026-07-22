@@ -1,0 +1,90 @@
+[
+  {
+    "campaign_id": "META-CAMP-01",
+    "campaign_name": "NovaBuds — Retarget Hot Cart",
+    "SKU_ID": "SQ-EL-1001",
+    "ad_spend": 420.5,
+    "impressions": 48200,
+    "conversions": 38
+  },
+  {
+    "campaign_id": "META-CAMP-02",
+    "campaign_name": "PulseCharge — Prospecting",
+    "SKU_ID": "SQ-EL-1002",
+    "ad_spend": 185.0,
+    "impressions": 31000,
+    "conversions": 41
+  },
+  {
+    "campaign_id": "META-CAMP-03",
+    "campaign_name": "Aether Pour-Over — Lifestyle",
+    "SKU_ID": "SQ-HM-2001",
+    "ad_spend": 95.25,
+    "impressions": 18000,
+    "conversions": 22
+  },
+  {
+    "campaign_id": "META-CAMP-04",
+    "campaign_name": "Lumen Lamp — Lookalike",
+    "SKU_ID": "SQ-HM-2002",
+    "ad_spend": 0,
+    "impressions": 0,
+    "conversions": 0
+  },
+  {
+    "campaign_id": "META-CAMP-05",
+    "campaign_name": "TrailForge Bag — Broad",
+    "SKU_ID": "SQ-AC-3001",
+    "ad_spend": 210.75,
+    "impressions": 26500,
+    "conversions": 12
+  },
+  {
+    "campaign_id": "META-CAMP-06",
+    "campaign_name": "Orbit Band — Always On",
+    "SKU_ID": "SQ-AC-3002",
+    "ad_spend": 64.0,
+    "impressions": 42000,
+    "conversions": 88
+  },
+  {
+    "campaign_id": "META-CAMP-07",
+    "campaign_name": "GridLock KB — Launch Boost",
+    "SKU_ID": "SQ-EL-1003",
+    "ad_spend": 150.0,
+    "impressions": 22000,
+    "conversions": 14
+  },
+  {
+    "campaign_id": "META-CAMP-08",
+    "campaign_name": "Nimbus Pillow — Soft Conv",
+    "SKU_ID": "SQ-HM-2003",
+    "ad_spend": 0,
+    "impressions": 1200,
+    "conversions": 0
+  },
+  {
+    "campaign_id": "META-CAMP-09",
+    "campaign_name": "VoltLine Cable — Catalog",
+    "SKU_ID": "SQ-AC-3003",
+    "ad_spend": 40.0,
+    "impressions": 55000,
+    "conversions": 150
+  },
+  {
+    "campaign_id": "META-CAMP-10",
+    "campaign_name": "SkyFrame Webcam — B2B",
+    "SKU_ID": "SQ-EL-1004",
+    "ad_spend": 88.5,
+    "impressions": 14000,
+    "conversions": 9
+  },
+  {
+    "campaign_id": "META-CAMP-11",
+    "campaign_name": "NovaBuds — Prospecting Overlay",
+    "SKU_ID": "SQ-EL-1001",
+    "ad_spend": 110.0,
+    "impressions": 15000,
+    "conversions": 8
+  }
+]

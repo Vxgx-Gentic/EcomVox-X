@@ -6,8 +6,8 @@ import type { AdCampaign, SKUItem } from "@/lib/types";
 export default function Home() {
   return (
     <Dashboard
-      shopifyData={shopifyData as SKUItem[]}
-      metaAdsData={metaAdsData as AdCampaign[]}
+      defaultShopify={shopifyData as SKUItem[]}
+      defaultMeta={metaAdsData as AdCampaign[]}
     />
   );
 }

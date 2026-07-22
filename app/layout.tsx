@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   title: "EcomVox - X",
   description:
     "EcomVox - X unifies Shopify inventory with Meta ad spend. Contribution margin, wasted-ad alerts, and stockout warnings.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0A0A0C",
 };
 
 export default function RootLayout({
