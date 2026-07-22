@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ecomvox — Navi Pivot
 
-## Getting Started
+Class MVP: unify **Shopify inventory** with **Meta Ads** spend by `SKU_ID`, compute contribution margin, and surface actionable alerts — wasted ad spend on low stock and impending stockouts.
 
-First, run the development server:
+> **Mock data only.** No live Shopify/Meta APIs, OAuth, auth, or paid backend. Drop-in JSON → rules engine → telemetry dashboard.
+
+## Problem
+
+An e-commerce analyst struggles with stale performance reporting because multi-platform sales, inventory, and marketing data are not unified at ingestion — which means wasted ad budget, preventable stockouts, and lost margin.
+
+## Solution
+
+Navi Pivot joins store inventory with ad campaign spend, shows contribution margin per SKU, and alerts when ads drive traffic to critically low stock or when burn rate implies a stockout within 5 days.
+
+## Core engine
+
+`processEcomData(shopifyData, metaAdsData)` in [`lib/engine.ts`](lib/engine.ts):
+
+1. Aggregate Meta campaigns by `SKU_ID`
+2. Join to Shopify inventory
+3. `contribution_margin = revenue - ad_spend - cogs` where `revenue = units_sold * retail_price` and `cogs = unit_cost * units_sold`
+4. Alerts:
+   - `stock_level < 10` AND `ad_spend > 0` → `CRITICAL: WASTED_AD_SPEND`
+   - `days_of_supply < 5` → `WARNING: IMPENDING_STOCKOUT` (CRITICAL wins if both)
+
+## Stack
+
+- Next.js (App Router) · TypeScript · Tailwind CSS
+- Pure React state (no Redux/Zustand)
+- Local mocks: [`data/shopify_mock.json`](data/shopify_mock.json), [`data/meta_ads_mock.json`](data/meta_ads_mock.json)
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project layout
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+data/           Mock Shopify + Meta payloads
+lib/types.ts    SKUItem, AdCampaign, UnifiedPerformanceRecord
+lib/engine.ts   processEcomData + summarizePerformance
+components/     Dashboard, KPIs, SKU table, status chips
+app/            Next.js App Router shell
+docs/           Class source PDFs (role research / product card)
+```
 
-## Learn More
+## Out of scope (by design)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Live API SDKs, OAuth, authentication, databases, GA4, paid hosting.

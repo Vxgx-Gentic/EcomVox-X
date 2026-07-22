@@ -1,0 +1,102 @@
+[
+  {
+    "SKU_ID": "SQ-EL-1001",
+    "product_name": "NovaBuds Pro Wireless Earbuds",
+    "category": "Electronics",
+    "stock_level": 4,
+    "unit_cost": 28.5,
+    "retail_price": 79.99,
+    "units_sold": 42,
+    "avg_daily_units": 6
+  },
+  {
+    "SKU_ID": "SQ-EL-1002",
+    "product_name": "PulseCharge 20W USB-C Brick",
+    "category": "Electronics",
+    "stock_level": 8,
+    "unit_cost": 9.2,
+    "retail_price": 24.99,
+    "units_sold": 65,
+    "avg_daily_units": 8
+  },
+  {
+    "SKU_ID": "SQ-HM-2001",
+    "product_name": "Aether Ceramic Pour-Over Set",
+    "category": "Home Goods",
+    "stock_level": 18,
+    "unit_cost": 14.0,
+    "retail_price": 42.0,
+    "units_sold": 30,
+    "avg_daily_units": 5
+  },
+  {
+    "SKU_ID": "SQ-HM-2002",
+    "product_name": "Lumen Softglow Desk Lamp",
+    "category": "Home Goods",
+    "stock_level": 12,
+    "unit_cost": 22.0,
+    "retail_price": 59.99,
+    "units_sold": 28,
+    "avg_daily_units": 4
+  },
+  {
+    "SKU_ID": "SQ-AC-3001",
+    "product_name": "TrailForge Nylon Crossbody",
+    "category": "Accessories",
+    "stock_level": 3,
+    "unit_cost": 11.5,
+    "retail_price": 34.99,
+    "units_sold": 20,
+    "avg_daily_units": 1
+  },
+  {
+    "SKU_ID": "SQ-AC-3002",
+    "product_name": "Orbit Silicone Watch Band",
+    "category": "Accessories",
+    "stock_level": 95,
+    "unit_cost": 3.4,
+    "retail_price": 14.99,
+    "units_sold": 110,
+    "avg_daily_units": 12
+  },
+  {
+    "SKU_ID": "SQ-EL-1003",
+    "product_name": "GridLock Mechanical Keyboard",
+    "category": "Electronics",
+    "stock_level": 55,
+    "unit_cost": 45.0,
+    "retail_price": 129.99,
+    "units_sold": 18,
+    "avg_daily_units": 2
+  },
+  {
+    "SKU_ID": "SQ-HM-2003",
+    "product_name": "Nimbus Memory Foam Pillow",
+    "category": "Home Goods",
+    "stock_level": 7,
+    "unit_cost": 16.0,
+    "retail_price": 49.99,
+    "units_sold": 40,
+    "avg_daily_units": 3
+  },
+  {
+    "SKU_ID": "SQ-AC-3003",
+    "product_name": "VoltLine Braided Cable 2m",
+    "category": "Accessories",
+    "stock_level": 140,
+    "unit_cost": 2.1,
+    "retail_price": 12.99,
+    "units_sold": 200,
+    "avg_daily_units": 15
+  },
+  {
+    "SKU_ID": "SQ-EL-1004",
+    "product_name": "SkyFrame 1080p Webcam",
+    "category": "Electronics",
+    "stock_level": 22,
+    "unit_cost": 31.0,
+    "retail_price": 89.99,
+    "units_sold": 15,
+    "avg_daily_units": 1.5
+  }
+]
